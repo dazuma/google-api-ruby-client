@@ -87,6 +87,7 @@ module Google
           return super if content_type.nil?
           return nil unless content_type.start_with?(JSON_CONTENT_TYPE)
           instance = response_class.new
+          body = "{}\n" if body.nil? || body == ""
           response_representation.new(instance).from_json(body, unwrap: response_class)
           instance
         end
